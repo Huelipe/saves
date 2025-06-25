@@ -52,6 +52,7 @@ void LeArquivo(const char *nome_arquivo, processo **Processos, int *qtd_processo
 // Função pra exibir o relatório com linha do tempo
 void ExibeLinhaDoTempo(char VetorDeLetras[], int totalDeSegundos){
     char letraTemporaria;
+
     printf("\nLinha do tempo:\n[0]");
 
     for(int i = 0; i < totalDeSegundos; i++){
@@ -139,7 +140,6 @@ void sjfPreemptivo(processo **Processos, int *qtd_processos){
     ExibeLinhaDoTempo(vetorDeLetras, segundoAtual);
 }
 
-/* -------- Round-Robin simples (quantum = 5 s) -------- */
 void roundRobin(processo *proc, int qtd, int quantum) {
     int restantes = qtd; // quantos processos ainda não terminaram
     int tempo = 0; 
@@ -150,7 +150,6 @@ void roundRobin(processo *proc, int qtd, int quantum) {
     // linha do tempo
     char *linhaDotempo = NULL; // armazena letra executada a cada segundo 
     int tlen = 0; // tamanho da linha do tempo
-
 
     while(restantes > 0){
         // coloca na fila processos que chegam no instante i
@@ -208,9 +207,10 @@ int main(){
 
     int escolha = 0;
 
-    printf("\n\n----------> Menu <----------\n");
+    printf("\n\n----------> Menu <----------\n"); // menu de escolhas
     printf("Escolha uma opção:\n\n");
     printf("1 - Visualizar os processos lidos\n2 - Escalonador SJF Preemptivo\n3 - Escalonador Round-Robin");
+    // o usuário pode escolher ver os processos ou executar um dos algoritmos
     printf("\n\nEscolha: ");
     scanf("%i", &escolha);
 
@@ -222,9 +222,9 @@ int main(){
         }
         printf("\n\nObservação: Se não saiu como esperado, siga o modelo de txt abaixo:\n");
         printf("Processo A B C D E\nTempo 1 2 3 4 5\nChegada 0 2 4 6 8\n");
-    }else if(escolha == 2){
+    }else if(escolha == 2){ // sjf
         sjfPreemptivo(&Processos, &qtd_processos);
-    }else if(escolha == 3){
+    }else if(escolha == 3){ // round robin
         roundRobin(Processos, qtd_processos, 5);
     }else{
         printf("\nEscolha inválida!\n");
