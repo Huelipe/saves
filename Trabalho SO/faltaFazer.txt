@@ -58,12 +58,12 @@ Mas o código era esse, tava no meu email:
     printf("TME: %.2f\n\n", TME);
 
 2)
-O round-robin parece funcionar corretamente, inclusive com diferentes quantums
+O round-robin parece funcionar corretamente, inclusive com diferentes quantums (inclusive da pra colocar no menu pro usuario dizer o quantum que quer)
 Achei o algoritmo na internet e consegui aproveitar bastante coisa, não foi dificil entender e adaptar usando fila
 
 Ajustei o SJF que já tinha feito para casos onde não há processos para executar também
 
-Então, se puder usca tentar entender e testar os dois algoritmos com diferentes arquivos de entrada, vê se tudo funciona corretamente mesmo
+Então, se puder busca tentar entender e testar os dois algoritmos com diferentes arquivos de entrada, vê se tudo funciona corretamente mesmo
 
 3)
 Na hora de exibir a linha do tempo do round robin, tem um porém
