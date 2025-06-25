@@ -1,0 +1,76 @@
+Eu tô com pouca coisa pra fazer e estudar, então resolvi adiantar com o que podia, já que vc tem prova de sistemas hj
+O que falta fazer:
+
+1)
+Na função ExibeLinhaDoTempo, colocar o tempo de espera e resposta de cada processo, calcular TMR e TME
+
+Eu tinha feito isso em aula, até tinha te mostrado, mas esqueci e agr acho que tem que adaptar
+Sei que vai ter q adicionar uns argumentos que passam pra função ExibeLinhaDoTempo
+
+Mas o código era esse, tava no meu email:
+    // Cálculo do TMR e TME
+    // Nesse double for eu procuro e salvo o ultimo segundo que cada letra foi salva no vetor de letras
+    int ultimoSegundo[qtd_processos];
+    for(int i = 0; i < qtd_processos; i++){
+        for(int j = 0; j < totalDeSegundos; j++){
+            if(VetorDeLetras[j] == Processos[i].letra){
+                ultimoSegundo[i] = j;
+            }
+        }
+    }
+
+    float TME = 0;
+    float TMR = 0;
+    int tempoEsperaCadaProcesso[qtd_processos]; // vou salvar o tempo de espera de cada processo
+    int tempoRespostaCadaProcesso[qtd_processos]; // vou salvar também o tempo de resposta de cada processo
+
+    for(int i = 0; i < qtd_processos; i++){
+        tempoEsperaCadaProcesso[i] = 1 + (ultimoSegundo[i] - tempoDeDuracao[i] - Processos[i].chegada);
+        tempoRespostaCadaProcesso[i] = 1 + (ultimoSegundo[i] - Processos[i].chegada);
+        TME = TME + tempoEsperaCadaProcesso[i];
+        TMR = TMR + tempoRespostaCadaProcesso[i];
+    }
+
+    TME = TME / qtd_processos;
+    TMR = TMR / qtd_processos;
+
+    printf("Tempo médio de resposta de cada processo:\n");
+    for(int i = 0; i < qtd_processos; i++){
+        printf("%c  ", Processos[i].letra);
+    }
+    printf("\n");
+    for(int i = 0; i < qtd_processos; i++){
+        printf("%i ", tempoRespostaCadaProcesso[i]);
+    }
+    printf("\n");
+
+    printf("\nTempo médio de espera de cada processo:\n");
+    for(int i = 0; i < qtd_processos; i++){
+        printf("%c  ", Processos[i].letra);
+    }
+    printf("\n");
+    for(int i = 0; i < qtd_processos; i++){
+        printf("%i ", tempoEsperaCadaProcesso[i]);
+    }
+    printf("\n\n");   
+
+    printf("TMR: %.2f\n", TMR);
+    printf("TME: %.2f\n\n", TME);
+
+2)
+O round-robin parece funcionar corretamente, inclusive com diferentes quantums
+Achei o algoritmo na internet e consegui aproveitar bastante coisa, não foi dificil entender e adaptar usando fila
+
+Ajustei o SJF que já tinha feito para casos onde não há processos para executar também
+
+Então, se puder usca tentar entender e testar os dois algoritmos com diferentes arquivos de entrada, vê se tudo funciona corretamente mesmo
+
+3)
+Na hora de exibir a linha do tempo do round robin, tem um porém
+Se um processo executar duas vezes seguidas, acho que o ideal seria exibir assim (quantum 3 por exemplo):
+[0]----|A|----[3]----|A|----[6]
+Mas do jeito que fiz, ele exibe:
+[0]----|A|----[6]
+Bom, não tá errado, mas será que deixamos assim?
+
+Dps me da um feedback e qlqr coisa a gente tenta fazer uma função pra exibir a linha do tempo própria pro round robin
